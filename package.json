@@ -1,0 +1,19 @@
+{
+  "name": "z-imagine-dsh-plugin-index",
+  "version": "1.0.0",
+  "description": "Custom DSH plugin index by z-imagine",
+  "homepage": "https://z-imagine.github.io/dsh-plugin-index",
+  "type": "module",
+  "scripts": {
+    "build": "node build-index.js",
+    "build:local": "node build-index.js --output index.json"
+  },
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "plugin-index",
+    "plugin-registry"
+  ],
+  "license": "CC0-1.0"
+}
