@@ -5,7 +5,7 @@ Custom DeepSeek Harness (DSH) plugin index by z-imagine, merging the upstream aw
 ## Index URL
 
 ```
-https://z-imagine.github.io/dsh-plugin-index/index.json
+https://samuelzuuka.github.io/dsh-plugin-index/index.json
 ```
 
 ## How to Use
