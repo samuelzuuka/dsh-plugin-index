@@ -4,9 +4,17 @@ Custom DeepSeek Harness (DSH) plugin index by z-imagine, merging the upstream aw
 
 ## Index URL
 
+**Recommended (fast in China):**
+```
+https://cdn.jsdelivr.net/gh/samuelzuuka/dsh-plugin-index@master/index.json
+```
+
+**GitHub Pages (original):**
 ```
 https://samuelzuuka.github.io/dsh-plugin-index/index.json
 ```
+
+jsDelivr CDN has mirrors in mainland China and provides faster access.
 
 ## How to Use
 
