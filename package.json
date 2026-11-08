@@ -15,5 +15,8 @@
     "plugin-index",
     "plugin-registry"
   ],
-  "license": "CC0-1.0"
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "@deepseek-ai/dsh-plugin-market-index": "^0.2.1-alpha.4"
+  }
 }

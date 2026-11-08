@@ -15,19 +15,24 @@ const DEFAULT_OUTPUT = 'index.json';
 const OWN_PLUGINS = [
   {
     name: '@z-imagine/dsh-free-light-search',
-    title: 'Free Light Search',
-    description: 'Multi-engine web search and fetch with free tiers, intelligent fallback, and API key rotation.',
-    description_zh: '轻量纯 AI 搜索插件，面向 DeepSeek Harness (dsh)，零成本起步，多引擎回退。',
-    author: { name: 'z-imagine' },
+    title: { en: 'Free Light Search', zh: '轻量纯 AI 搜索' },
+    description: { en: 'Multi-engine web search and fetch with free tiers, intelligent fallback, and API key rotation.', zh: '轻量纯 AI 搜索插件，面向 DeepSeek Harness (dsh)，零成本起步，多引擎回退。' },
+    author: 'z-imagine',
     homepage: 'https://github.com/z-imagine/dsh-free-light-search',
-    category: 'Tools & Capabilities',
+    metadata: {
+      category: 'tools'
+    },
     keywords: ['search', 'web', 'fetch', 'free', 'lightweight'],
     versions: [
       {
         version: '1.0.0',
-        source: 'git+https://github.com/z-imagine/dsh-free-light-search.git#d052648',
+        source: {
+          type: 'git',
+          url: 'https://github.com/z-imagine/dsh-free-light-search.git',
+          commit: 'd05264858ceb75f7a16b45505f48928191667015'
+        },
         engines: { dsh: '>=0.2.0' },
-        publishedAt: '2026-11-08T19:00:00.000Z'
+        publishTimestamp: Math.floor(Date.now() / 1000)
       }
     ]
   }
@@ -68,13 +73,17 @@ async function fetchUpstream(url) {
 function mergeIndexes(upstream, ownPlugins) {
   console.log(`Merging ${ownPlugins.length} own plugins...`);
 
-  // Start with upstream index structure
+  // Preserve upstream metadata (categories, labels, sortKeys)
   const merged = {
     format: 1,
-    name: 'z-imagine DSH Plugin Index',
-    description: 'Custom DSH plugin index by z-imagine, merging upstream with own plugins.',
+    title: { en: 'z-imagine DSH Plugin Index', zh: 'z-imagine DSH 插件索引' },
+    description: { en: 'Custom DSH plugin index by z-imagine, merging upstream with own plugins.', zh: 'z-imagine 自定义 DSH 插件索引，合并上游与自有插件。' },
     plugins: []
   };
+
+  if (upstream && upstream.metadata) {
+    merged.metadata = upstream.metadata;
+  }
 
   // Add upstream plugins
   if (upstream && upstream.plugins) {
@@ -89,10 +98,9 @@ function mergeIndexes(upstream, ownPlugins) {
       console.log(`  Updating existing: ${plugin.name}`);
       existing.title = plugin.title;
       existing.description = plugin.description;
-      if (plugin.description_zh) existing.description_zh = plugin.description_zh;
       existing.author = plugin.author;
       existing.homepage = plugin.homepage;
-      existing.category = plugin.category;
+      if (plugin.metadata) existing.metadata = plugin.metadata;
       existing.keywords = plugin.keywords;
       existing.versions = plugin.versions;
     } else {
